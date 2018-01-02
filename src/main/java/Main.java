@@ -18,7 +18,5 @@ public class Main {
 
     public static void main(final String[] args) throws Exception {
         new Manipulator().start();
-       /* BookService bookService = new BookService();
-        System.out.println(bookService.remote("Название книги"));*/
     }
 }

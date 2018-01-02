@@ -61,7 +61,6 @@ public class BookDAO implements BookDAOInter {
         query.setParameter("titleBook", name);
         int numbers = query.executeUpdate();
         session.close();
-        System.out.println("удаление");
         return numbers;
     }
 
@@ -84,6 +83,16 @@ public class BookDAO implements BookDAOInter {
     }
 
     public boolean edit(BookEntity oldBook, BookEntity newBook) {
-        return false;
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        session.beginTransaction();
+        Query query = session.createQuery("UPDATE BookEntity" +
+                " SET title = :titleBook, auther = :autherBook " +
+                "WHERE id= :idBook");
+        query.setParameter("titleBook", newBook.getTitle());
+        query.setParameter("autherBook", newBook.getAuther());
+        query.setParameter("idBook", oldBook.getId());
+        int numbers = query.executeUpdate();
+        session.close();
+        return numbers == 1;
     }
 }

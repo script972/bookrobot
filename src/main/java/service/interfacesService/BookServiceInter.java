@@ -2,6 +2,7 @@ package service.interfacesService;
 
 import entity.BookEntity;
 import utils.LibrabryConsistBook;
+import utils.LibrabryHavnotBook;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface BookServiceInter {
 
     int remove(String bookName);
 
-    void editBook(String editbookname);
+    void editBook(String editbookname) throws LibrabryHavnotBook;
 
     List<BookEntity> getAllBook();
 

@@ -15,9 +15,25 @@ public class AutherDAO implements AutherDAOInter {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
         Query query = session.createQuery("FROM AutherEntity WHERE name = :nameAuther");
-        AutherEntity book = (AutherEntity) query.setParameter("nameAuther", name);
+        List<AutherEntity> list = query.setParameter("nameAuther", name).list();
         session.getTransaction().commit();
         session.close();
-        return book;
+        if (list.size() >0)
+            return list.get(0);
+        return null;
+    }
+
+    @Override
+    public boolean update(AutherEntity oldAugher, AutherEntity newAutehr) {
+        return false;
+    }
+
+    @Override
+    public void save(AutherEntity autherEntity) {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(autherEntity);
+        session.getTransaction().commit();
+        session.close();
     }
 }

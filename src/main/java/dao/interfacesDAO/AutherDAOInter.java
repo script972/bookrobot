@@ -3,5 +3,9 @@ package dao.interfacesDAO;
 import entity.AutherEntity;
 
 public interface AutherDAOInter {
-    public AutherEntity getAutherByName(String name);
+    AutherEntity getAutherByName(String name);
+
+    boolean update(AutherEntity oldAugher, AutherEntity newAutehr);
+
+    void save(AutherEntity autherEntity);
 }
